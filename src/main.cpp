@@ -14,11 +14,11 @@
 const float desired_error = (const float) 0.01;
 const unsigned int max_epochs = 10000;
 const unsigned int epochs_between_reports = 100;
+const unsigned int layers[5] = {4, 8, 24, 16, 8}; // the layers: input_nodes, ...intermediade_layers..., output_nodes
 
 int main(int argc, char *argv[]) {
   try {
     if ( std::string(argv[1]) == "create") { // e.g. neural_net create
-      unsigned int layers[5] = {8, 8, 24, 16, 8}; // the layers of the network
       struct fann *ann {fann_create_shortcut_array(5, layers)};
       fann_set_activation_function_hidden(ann, FANN_SIGMOID_SYMMETRIC);
       fann_set_activation_function_output(ann, FANN_SIGMOID_SYMMETRIC);
