@@ -15,6 +15,7 @@ const float desired_error = (const float) 0.01;
 const unsigned int max_epochs = 10000;
 const unsigned int epochs_between_reports = 100;
 const unsigned int layers[5] = {4, 8, 24, 16, 8}; // the layers: input_nodes, ...intermediade_layers..., output_nodes
+// const unsigned int layers[5] = {16, 8, 24, 16, 8}; // artist's version
 
 int main(int argc, char *argv[]) {
   try {
