@@ -16,7 +16,8 @@ constexpr unsigned int max_epochs = 10000;
 constexpr unsigned int epochs_between_reports = 100;
 constexpr unsigned int layers[5] = {4, 8, 24, 16, 8}; // the layers: input_nodes, ...intermediade_layers..., output_nodes
 // const unsigned int layers[5] = {16, 8, 24, 16, 8}; // artist's version
-constexpr unsigned int input_layers = layers[0]; 
+constexpr unsigned int number_of_input_nodes = layers[0]; 
+constexpr unsigned int number_of_output_nodes = layers[4]; // ****if more than 5 layers are used this should be updated accordingly***
 
 int main(int argc, char *argv[]) {
   try {
@@ -34,11 +35,11 @@ int main(int argc, char *argv[]) {
       fann_destroy(ann);
     } else if ( std::string(argv[1]) == "use") { // e.g. neural_net use 1 0 1 .. 1 (all the 16 features should be the input)
       struct fann *ann {fann_create_from_file("network.net")};
-      fann_type input[input_layers];
+      fann_type input[number_of_input_nodes];
       for (int i=0; i<input_layers; i++)
 	input[i] = std::atof(argv[i+2]);
       fann_type *calc_out {fann_run(ann, input)};
-      for (int i=0; i<input_layers; i++)
+      for (int i=0; i<number_of_output_nodes; i++)
 	std::cout << calc_out[i] << ", ";
       std::cout << std::endl;
       fann_destroy(ann);
