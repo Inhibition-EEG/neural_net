@@ -16,7 +16,7 @@ constexpr unsigned int max_epochs = 10000;
 constexpr unsigned int epochs_between_reports = 100;
 constexpr unsigned int layers[5] = {4, 8, 24, 16, 8}; // the layers: input_nodes, ...intermediade_layers..., output_nodes
 // const unsigned int layers[5] = {16, 8, 24, 16, 8}; // artist's version
-constexpr unsignd int input_layers = layers[0]; 
+constexpr unsigned int input_layers = layers[0]; 
 
 int main(int argc, char *argv[]) {
   try {
