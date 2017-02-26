@@ -11,11 +11,12 @@
 #include <cstring>
 
 // settings
-const float desired_error = (const float) 0.01;
-const unsigned int max_epochs = 10000;
-const unsigned int epochs_between_reports = 100;
-const unsigned int layers[5] = {4, 8, 24, 16, 8}; // the layers: input_nodes, ...intermediade_layers..., output_nodes
+constexpr float desired_error = (const float) 0.01;
+constexpr unsigned int max_epochs = 10000;
+constexpr unsigned int epochs_between_reports = 100;
+constexpr unsigned int layers[5] = {4, 8, 24, 16, 8}; // the layers: input_nodes, ...intermediade_layers..., output_nodes
 // const unsigned int layers[5] = {16, 8, 24, 16, 8}; // artist's version
+constexpr unsignd int input_layers = layers[0]; 
 
 int main(int argc, char *argv[]) {
   try {
@@ -33,11 +34,11 @@ int main(int argc, char *argv[]) {
       fann_destroy(ann);
     } else if ( std::string(argv[1]) == "use") { // e.g. neural_net use 1 0 1 .. 1 (all the 16 features should be the input)
       struct fann *ann {fann_create_from_file("network.net")};
-      fann_type input[8];
-      for (int i=0; i<8; i++)
+      fann_type input[input_layers];
+      for (int i=0; i<input_layers; i++)
 	input[i] = std::atof(argv[i+2]);
       fann_type *calc_out {fann_run(ann, input)};
-      for (int i=0; i<8; i++)
+      for (int i=0; i<input_layers; i++)
 	std::cout << calc_out[i] << ", ";
       std::cout << std::endl;
       fann_destroy(ann);
